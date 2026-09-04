@@ -8,4 +8,5 @@ kneed
 ipython
 plotly
 ipywidgets
-
+joblib
+streamlit
