@@ -9,4 +9,4 @@ ipython
 plotly
 ipywidgets
 joblib
-streamlit
+fastapi
