@@ -9,4 +9,7 @@ ipython
 plotly
 ipywidgets
 joblib
+fastapi
 streamlit
+lightgbm
+statsmodels
