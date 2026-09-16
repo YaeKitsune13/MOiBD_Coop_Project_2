@@ -14,12 +14,6 @@ router = APIRouter(
     response_model=PredictResponse,
 )
 def predict(payload: PredictRequest):
-    """
-    Расчёт стоимости объекта.
-
-    Ошибки валидации входных данных обрабатываются FastAPI
-    автоматически и возвращаются как 422.
-    """
     try:
         result = model_service.predict(payload)
 
@@ -30,14 +24,12 @@ def predict(payload: PredictRequest):
         )
 
     except (KeyError, ValueError, TypeError) as e:
-        # Ошибка формирования входных данных для модели.
         raise HTTPException(
             status_code=400,
             detail=f"Не удалось выполнить прогноз: {e}",
         )
 
     except Exception as e:
-        # Непредвиденная ошибка самого ML-пайплайна.
         raise HTTPException(
             status_code=500,
             detail=f"Ошибка модели: {e}",

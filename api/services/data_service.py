@@ -1,8 +1,3 @@
-"""
-Загрузка датасета — один раз при старте.
-Отдаёт статистику и выборки для дашборда.
-"""
-
 import math
 import pandas as pd
 
@@ -41,7 +36,6 @@ HEATING_TYPE_MAP = {
 
 
 def _json_safe_value(value):
-    """Преобразует NaN/inf в None для корректного JSON."""
     if value is None:
         return None
 
@@ -52,7 +46,6 @@ def _json_safe_value(value):
 
 
 def _json_safe_records(frame: pd.DataFrame) -> list[dict]:
-    """DataFrame -> список JSON-безопасных словарей."""
     safe = frame.copy()
     safe = safe.astype(object).where(pd.notna(safe), None)
 
@@ -72,7 +65,6 @@ class DataService:
         self.df: pd.DataFrame | None = None
 
     def load(self) -> None:
-        # low_memory=False убирает предупреждение о смешанных типах.
         df = pd.read_csv(DATA_PATH, low_memory=False)
 
         if "furnished" in df.columns:

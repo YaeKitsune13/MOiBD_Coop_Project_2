@@ -12,7 +12,6 @@ router = APIRouter(
 
 
 def _json_safe_dataframe(frame: pd.DataFrame) -> list[dict]:
-    """Удаляет NaN/inf перед передачей данных в JSON."""
     safe = frame.copy()
     safe = safe.astype(object).where(pd.notna(safe), None)
     return safe.to_dict(orient="records")
@@ -20,7 +19,6 @@ def _json_safe_dataframe(frame: pd.DataFrame) -> list[dict]:
 
 @router.get("/models")
 def list_models():
-    """Список моделей и их метрики."""
     if not MODEL_COMPARISON_PATH.exists():
         raise HTTPException(
             status_code=503,
@@ -51,7 +49,6 @@ def dataset_sample():
 
 @router.get("/interactive/correlation")
 def correlation_matrix():
-    """Матрица корреляций числовых признаков."""
     return data_service.correlation_matrix()
 
 
@@ -68,7 +65,6 @@ def avg_price_by_category(
         pattern="^(mean|median)$",
     ),
 ):
-    """Средняя/медианная цена по категориям."""
     try:
         return data_service.avg_price_by_category(
             column,
