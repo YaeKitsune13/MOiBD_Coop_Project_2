@@ -12,7 +12,6 @@ router = APIRouter(
 
 @router.get("/ping")
 def ping():
-    """Проверка работоспособности API."""
     return {"status": "ok"}
 
 
@@ -21,7 +20,6 @@ def ping():
     response_model=AppInfo,
 )
 def info():
-    """Справочная информация о приложении."""
     return AppInfo(
         version=APP_VERSION,
         description=(

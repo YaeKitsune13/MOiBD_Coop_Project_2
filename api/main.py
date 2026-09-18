@@ -9,7 +9,6 @@ from api.services.model_service import model_service
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Загрузка модели и датасета один раз при запуске."""
     model_service.load()
     data_service.load()
 

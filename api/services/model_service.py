@@ -327,12 +327,10 @@ class ModelService:
             if column not in df.columns:
                 df[column] = 0
 
-        # Удаляем всё лишнее.
         df = df[
             expected_columns
         ]
 
-        # Числовой тип.
         df = df.apply(
             pd.to_numeric,
             errors="coerce",

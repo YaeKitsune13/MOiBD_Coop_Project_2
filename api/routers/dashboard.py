@@ -38,7 +38,6 @@ def list_models():
     response_model=DatasetSummary,
 )
 def dataset_summary():
-    """Общая статистика по датасету."""
     return data_service.summary()
 
 
